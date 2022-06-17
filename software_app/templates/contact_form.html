@@ -1,0 +1,14 @@
+{% extends '__base__.html' %}
+
+{% block content %}
+<h4>Zgłoś jaki program potrzebujesz </h4>
+
+<form action="" method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+
+
+  <input type="submit" value="Send message">
+</form>
+
+{% endblock %}

@@ -1,0 +1,60 @@
+{% extends '__base__.html' %}
+
+{% block content %}
+
+<style>
+table {
+    border-collapse: collapse;
+    border:2px solid #999;
+}
+table td, table th, table tr{
+    border-collapse: collapse;
+    border:1px solid #999;
+}
+</style>
+<table>
+  <tr>
+    <th>Numer</th>
+    <th>Nazwa</th>
+      <th>Opis</th>
+      <th>Akcja</th>
+  </tr>
+
+
+    <h1>Lista rodzaju oprogramowania</h1>
+    <p><span class="font-weight-bold">Liczba rodzaju oprogramowania: {{counter_sortofsoftware}}</span></p>
+    <a href='{% url "add_sortofsoftware" %}'>Dodaj</a>
+    <tr>
+    {% for sortofsoftware in object_list %}
+        <td> {{sortofsoftware.id}} </td>
+        <td> {{sortofsoftware.name}} </td>
+           <td>  {{sortofsoftware.description_sort}}</td>
+
+         <td class="col-2 d-flex-row align-items-center justify-content-center flex-wrap">
+              <a href="/request_update/{{ request.id }}/"
+                           class="btn btn-primary rounded-0 text-light m-1">Edytuj</a>
+          <a href="/request_delete/{{ request.id }}/"
+                           class="btn btn-primary rounded-0 text-light m-1">Usuń</a>
+
+ </tr>
+
+    {% endfor %}
+</table>
+<div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+{% endblock %}

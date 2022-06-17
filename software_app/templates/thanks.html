@@ -1,0 +1,14 @@
+{% extends '__base__.html' %}
+
+{% block content %}
+<h3>Dziękujemy za wysłanie zgłoszenia</h3>
+
+<form action="" method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+
+
+
+</form>
+
+{% endblock %}

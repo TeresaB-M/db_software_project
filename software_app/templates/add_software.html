@@ -1,0 +1,17 @@
+{% extends '__base__.html' %}
+
+{% block title %}Nowy program{% endblock %}
+
+{% block content %}
+
+<form action="" method="POST">
+    {% csrf_token %}
+<p><label> Nazwa nowego programu: <input type="text" name="name"></label></p>
+    <p><label>Opis nowego programu:<input type="text" name="description"></label></p>
+    <h6>{{ message }}</h6>
+    <button type="submit" class="btn btn-primary">Dodaj Program</button>
+    </form>
+
+<br>
+
+{% endblock %}

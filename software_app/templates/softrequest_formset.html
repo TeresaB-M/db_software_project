@@ -1,0 +1,18 @@
+{% extends '__base__.html' %}
+
+
+{% block content %}
+
+<h3>Wprowadź nowe zamówienie</h3>
+ <form method="post">
+            {% csrf_token %}
+{{ form }}
+  {% for formset in inlines %}
+  {{ formset }}
+ {% endfor %}
+    <input type="submit" value="Zatwierdź" class="submit"/>
+    </form>
+
+ <p> <a href='{% url "add_sortofsoftware" %}'>Dodaj nowy rodzaj oprogramowania</a> </p>
+
+{% endblock %}

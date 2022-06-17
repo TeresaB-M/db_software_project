@@ -1,0 +1,92 @@
+{% extends '__base__.html' %}
+
+{% block content %}
+
+        <header class="page-header">
+        <nav class="navbar navbar-expand-lg justify-content-around">
+            <a href="/" class="navbar-brand main-logo">
+                Witamy w systemie  <span>ewidencji oprogramowania</span>
+            </a>
+            <ul class="nav nounderline text-uppercase">
+                <li class="nav-item ml-4">
+                    <a class="nav-link" href="#about">o aplikacji</a>
+                </li>
+                <li class="nav-item ml-4">
+                    <a class="nav-link disabled" href="{% url 'software' %}">Wykaz programów</a>
+                </li>
+                <li class="nav-item ml-4">
+                    <a class="nav-link disabled" href="{% url 'request_list' %}">Zamówienia</a>
+                </li>
+                <li class="nav-item ml-4">
+                    <a class="nav-link color-header" href="{% url 'login' %}">logowanie</a>
+                </li>
+                <li class="nav-item ml-4">
+                    <a class="nav-link disabled" href="{% url 'contact_form' %}"> Formularz kontaktowy</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+ <section class="padding-medium story bg-light" id="about">
+        <div class="container d-flex justify-content-center align-items-center">
+            <div class="row">
+                <div class="col-4 mr-4">
+                    <div class="div-img">
+                    </div>
+                </div>
+
+                <div class="col-7 ml-4">
+                    <h1 class="pb-1">O aplikacji</h1>
+                    <p>Aplikacja służy do zarządaniem oprogramowaniem dostępnym w firmie.
+
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="last-info-section padding-small" id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h4 class="mb-4">Masz pytania odnośnie dostępności programów</h4>
+                    <p>Jeśli masz pytania dotyczące dostępności oprogramowania napisz.
+                    Potrzebujesz program, napisz</p>
+                </div>
+                <div class="col pl-4 ml-4">
+                    <h3 class="mb-4">Kontakt</h3>
+                    <ul class="container">
+                        <li>email: program@program.com</li>
+
+                    </ul>
+                </div>
+                <div class="col">
+                    <h3 class="mb-4">Kontakt</h3>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control border-0 rounded-0" placeholder=""
+                            aria-label="Recipient's username" aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                            <button class="input-group-text btn-color border-0 rounded-0" type="submit" id="basic-addon2"><a
+                                    href="index.html">email: kontakt@program.com</a></button>
+                        </div>
+                    </div>
+                    <div class="container d-flex-row">
+                        <a href="#">
+                            <i class="fab fa-facebook-square mr-4 icon-social"></i>
+                        </a>
+                        <a href="#">
+                            <i class="fab fa-twitter-square mr-4 icon-social"></i>
+
+                        </a>
+                        <a href="#">
+                            <i class="fab fa-instagram icon-social"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+        </div>
+    </section>
+
+{% endblock %}

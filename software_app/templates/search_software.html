@@ -1,0 +1,52 @@
+{% extends '__base__.html' %}
+
+{% block title %}Nowy program{% endblock %}
+
+{% block content %}
+
+<form action="/search_software/" method="GET">
+    {% csrf_token %}
+<div class="form-group">
+        <label for="name">Nazwa</label>
+        <input type="text" class="form-control" id="name" placeholder="name" name="name">
+      </div>
+
+<p><label>
+  <input type="submit" value="Szukaj">
+</label></p>
+<br><br>
+<br>
+
+<style>
+table {
+    border-collapse: collapse;
+    border:2px solid #999;
+}
+table td, table th, table tr{
+    border-collapse: collapse;
+    border:1px solid #999;
+}
+</style>
+<table>
+  <tr>
+    <th>Numer</th>
+    <th>Nazwa oprogramowania</th>
+    <th>Opis</th>
+  </tr>
+
+{% for s in software %}
+ <tr>
+     <td>{{s.id}}</td>
+     <td> {{ s.name }} </td>
+ <td>   {{s.description}}</td>
+
+
+ </tr>
+{% endfor %}
+</table>
+
+    <br>
+
+</form>
+
+{% endblock %}

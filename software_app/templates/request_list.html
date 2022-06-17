@@ -1,0 +1,79 @@
+{% extends '__base__.html' %}
+{% block content %}
+
+<h3>Wykaz zamówień</h3>
+<span class="font-weight-bold">Liczba zamówień: {{counter_softrequest}}</span>
+<div class="col noPadding d-flex justify-content-end mb-2"><a
+                    href="/request/add/"
+                    class="btn btn-primary rounded-0 pt-0 pb-0 pr-4 pl-4">Wprowadż Zamówienie Programu</a></div>
+
+ <div class="col noPadding d-flex justify-content-end mb-2"><a
+                    href="/search/"
+                    class="btn btn-primary rounded-0 pt-0 pb-0 pr-4 pl-4">Wyszukaj zamówienia</a></div>
+
+<style>
+table {
+    border-collapse: collapse;
+    border:2px solid #999;
+}
+table td, table th, table tr{
+    border-collapse: collapse;
+    border:1px solid #999;
+}
+</style>
+<table>
+  <tr>
+    <th>Numer</th>
+    <th>Nazwisko</th>
+      <th>Imię</th>
+      <th>Email</th>
+      <th>Program</th>
+      <th>Data wypożyczenia</th>
+      <th>Typ licencji</th>
+      <th>Rodzaj licencji</th>
+      <th>Akcja</th>
+  </tr>
+
+{% for request in request_list %}
+ <tr>
+     <td>{{request.id}}</td>
+ <td>   {{request.person.surname}}</td>
+     <td>   {{request.person.name}}</td>
+      <td>   {{request.person.email}}</td>
+     <td>   {{request.my_software.software.name}}</td>
+     <td>   {{request.time_request}}</td>
+     <td>   {{request.my_software.type_of_software.name}}</td>
+     <td>   {{request.my_software.sort_of_software.name}}</td>
+
+
+
+     <td class="col-2 d-flex-row align-items-center justify-content-center flex-wrap">
+              <a href="/request_update/{{ request.id }}/"
+                           class="btn btn-primary rounded-0 text-light m-1">Edytuj</a>
+          <a href="/request_delete/{{ request.id }}/"
+                           class="btn btn-primary rounded-0 text-light m-1">Usuń</a>
+
+ </tr>
+
+{% endfor %}
+</table>
+
+<div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,73 @@
+{% extends '__base__.html' %}
+{% block content %}
+
+<h3>Wykaz posiadanego oprogramowania</h3>
+<span class="font-weight-bold">Liczba programów: {{counter_software}}</span>
+<div class="col noPadding d-flex justify-content-end mb-2"><a
+                    href="/software/add/"
+                    class="btn btn-primary rounded-0 pt-0 pb-0 pr-4 pl-4">Dodaj oprogramowanie</a></div>
+
+ <div class="col noPadding d-flex justify-content-end mb-2"><a
+                    href="/search_software/"
+                    class="btn btn-primary rounded-0 pt-0 pb-0 pr-4 pl-4">Wyszukaj oprogramowania</a></div>
+
+<style>
+table {
+    border-collapse: collapse;
+    border:2px solid #999;
+}
+table td, table th, table tr{
+    border-collapse: collapse;
+    border:1px solid #999;
+}
+</style>
+<table>
+  <tr>
+    <th>Numer</th>
+    <th>Nazwa oprogramowania</th>
+    <th>Opis</th>
+      <th>Akcje</th>
+  </tr>
+
+{% for s in softwares %}
+ <tr>
+     <td>{{s.id}}</td>
+     <td> {{ s.name }} </td>
+ <td>   {{s.description}}</td>
+
+     <td class="col-2 d-flex-row align-items-center justify-content-center flex-wrap">
+              <a href="/software_update/{{ s.id }}/"
+                           class="btn btn-primary rounded-0 text-light m-1">Edytuj</a>
+          <a href="/software_delete/{{ s.id }}/"
+                           class="btn btn-primary rounded-0 text-light m-1">Usuń</a>
+
+ </tr>
+
+{% endfor %}
+</table>
+
+<div class="pagination">
+            <span class="step-links">
+                {% if softwares.has_previous %}
+                <a href="?page=1">&laquo; first</a>
+                    <a href="?page={{ softwares.previous_page_number }}">Previous page</a>
+                {% else %}
+                    Previous page
+                {% endif %}
+
+                {% for i in range %}
+
+                    <span class="current">
+                    | <a href="?page={{ i }}">{{ i }}</a>
+                </span>
+
+                {% endfor %}
+
+                {% if softwares.has_next %}
+                    <a href="?page={{ softwares.next_page_number }}">| Next page</a>
+                {% else %}
+                    | Next Page
+                {% endif %}
+            </span>
+            </div>
+{% endblock content %}
